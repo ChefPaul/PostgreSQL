@@ -1,0 +1,7 @@
+--How much liquor sales per year?
+SELECT DATE_PART('year', date) as sale_year, DATE_PART('month', date) AS sale_month, SUM(total) 
+FROM sales GROUP BY sale_year, sale_month
+ORDER BY sale_year, sale_month;
+
+--Legacy Products: Separate out products that were carried before 2000 to create a list of legacy products. How many products are there?
+SELECT * FROM products WHERE DATE_PART('year', list_date) < 2000;
