@@ -1,0 +1,8 @@
+--What vendor names appear either in our products table or in our sales table?
+SELECT DISTINCT vendor_name FROM products 
+UNION
+SELECT DISTINCT vendor FROM sales;
+
+SELECT DISTINCT CAST(vendor_no AS integer) FROM sales
+EXCEPT
+SELECT DISTINCT vendor FROM products;
