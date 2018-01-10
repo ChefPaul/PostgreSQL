@@ -1,0 +1,40 @@
+--Search how many tequila products we have
+SELECT * FROM products WHERE category_name ILIKE '%tequila%';
+SELECT * FROM products WHERE category_name = 'Tequila';
+
+SELECT DISTINCT category_name FROM products;
+--which products are either Single Malt Scotches or Canadian Whiskeys?
+SELECT * FROM products WHERE category_name IN('CANADIAN WHISKIES', 'SINGLE MALT SCOTCH');
+SELECT * FROM products WHERE category_name ILIKE '%CANADIAN%' or category_name ILIKE '%SINGLE MALT SCOTCH%';
+
+
+--How many tequila products have a case cost more than $70?
+SELECT * FROM products WHERE category_name ILIKE '%TEQUILA%' AND case_cost > 70;
+--527 products
+
+
+--How many unique items (product names) have less than 12 in a pack?
+SELECT * FROM products;
+SELECT DISTINCT item_description FROM products;
+SELECT DISTINCT item_description FROM products WHERE pack < 12;
+--3595 unique product names
+
+
+--How many stores are active (use store_status)? How many are inactive?
+SELECT * FROM stores;
+SELECT * FROM stores WHERE store_status = 'A';
+--1425 Active Stores
+SELECT * FROM stores WHERE store_status = 'I';
+--548 Inactive Stores
+
+
+--Which items are from vendor Jim Beam Brands? Which are not?
+SELECT * FROM products WHERE vendor_name ILIKE '%JIM BEAM BRANDS%';
+SELECT * FROM products WHERE vendor_name = 'JIM BEAM BRANDS';
+SELECT * FROM products WHERE vendor_name IN('JIM BEAM BRANDS');
+--925 rows for JIM BEAM BRAND vendor
+SELECT * FROM products WHERE vendor_name NOT ILIKE '%JIM BEAM BRANDS%';
+SELECT * FROM products WHERE vendor_name = 'JIM BEAM BRANDS';
+--9052 rows for non JIM BEAM BRAND vendors
+
+SELECT DISTINCT category_name FROM products;
