@@ -1,0 +1,39 @@
+--FIRST GROUP OF QUESTIONS--
+
+--What is the average bottle size per category name & item description?
+SELECT category_name, item_description, AVG(bottle_size) FROM products
+GROUP BY category_name, item_description ORDER BY AVG(bottle_size) DESC;
+
+--What is the maximum bottle size per category name?
+SELECT category_name, MAX(bottle_size) FROM products
+GROUP BY category_name ORDER BY category_name;
+
+--What are the total bottles sold per store and per item?
+SELECT store, SUM(bottle_qty) FROM sales GROUP BY store
+ORDER BY SUM(bottle_qty) DESC;
+
+--How many transactions occered per store?
+SELECT store, COUNT(*) FROM sales GROUP BY store ORDER BY COUNT(*) DESC;
+
+--Which vendors sell more than 10 products?
+SELECT vendor, COUNT(*) from products GROUP BY vendor HAVING COUNT(*)>10;
+
+
+--SECOND GROUP OF QUESTIONS--
+
+--How many products does each category have?
+SELECT * FROM products;
+SELECT category_name, COUNT(*) FROM products GROUP BY category_name;
+
+
+--Which categories have more than 100 products?
+SELECT category_name, COUNT(*) FROM products GROUP BY category_name HAVING COUNT(*) > 100;
+SELECT category_name, COUNT(item_no) FROM products GROUP BY category_name HAVING COUNT(item_no) > 100;
+
+
+--What is the average bottle size of each category?
+SELECT category_name, AVG(bottle_size) FROM products GROUP BY category_name;
+
+
+--What are the (unique) vendors that sell Tequilas?
+SELECT DISTINCT vendor_name FROM products WHERE category_name ILIKE '%TEQUILA%;
