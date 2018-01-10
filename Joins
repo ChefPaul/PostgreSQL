@@ -1,0 +1,24 @@
+--Which stores sold a Tequila product?
+SELECT * FROM sales INNER JOIN stores ON sales.store=stores.store WHERE category_name ILIKE '%TEQUILA%' LIMIT 100;
+SELECT * FROM sales a INNER JOIN stores b ON a.store = b.store
+WHERE a.category_name ILIKE '%TEQUILA' LIMIT 100;
+
+
+--Which stores in Adam and Boone county have Tequila sales?
+SELECT * FROM sales a INNER JOIN stores b ON a.store = b.store
+WHERE a.category_name ILIKE '%TEQUILA' AND a.county IN('Adams', 'Boone');
+
+
+--Which sales match to a store, and which do not(why might they not match to a store?)
+SELECT DISTINCT county FROM sales;
+SELECT * FROM sales a LEFT JOIN stores b ON a.store = b.store
+WHERE b.store IS NULL;
+
+--Were there any sales in the database completed at an inactive store? (0)
+SELECT * FROM sales INNER JOIN stores ON sales.store = stores.store WHERE store_status = 'I';
+
+--Which Tequila products were not sold?
+SELECT * FROM stores LIMIT 100;
+SELECT * FROM sales LIMIT 100;
+SELECT * FROM products LEFT JOIN sales ON products.item_no = sales.item
+WHERE products.category_name ILIKE '%%TEQUILA%' AND sales.total IS NULL;
