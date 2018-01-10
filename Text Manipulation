@@ -1,0 +1,22 @@
+--Convert the item_no in the products table to text and extract the last four digits to create a new column called item code.
+SELECT * FROM products;
+SELECT RIGHT(CAST(item_no AS text),4) AS item_code, * FROM products;
+
+--Convert the category name in products to Proper Capitalization. Then Combine it with the item description so it reads "Category Name - Item Description" and call the column item_tagname.
+SELECT INITCAP(category_name), * FROM products;
+SELECT CONCAT(INITCAP(category_name), ' - ',item_description), * FROM products;
+SELECT CONCAT(INITCAP(category_name), ' - ',item_description) AS item_tagname, * FROM products;
+
+--Take the left four digits of the category and create a column called category code. Make it lowercase.
+SELECT LEFT(LOWER(category_name),4) AS category_code, * FROM products;
+
+--We find out that one of the software we are importing to gets confused when it sees "/" in a string. Replace "/" in the item_descriptions in the products table with a "-"
+SELECT * FROM products WHERE item_description ILIKE '%/%';
+SELECT REPLACE(item_description, '/', '-') AS item_desc_new, * FROM products;
+
+--Create a new field called "store code" that combines the store status with the store number (e.g. A2535) for the stores table.
+SELECT * FROM stores;
+SELECT CONCAT(store_status, store) AS store_code, * FROM stores; 
+
+--Your boss said it would be more useful to have the store name merged with the store number than the store status. Capitalize the first four letters of the store name from the stores table and add it to the store number to create a column called "store id" (e.g. 2535HILL).
+SELECT CONCAT(store, LEFT(UPPER(name),4)) as store_id, * FROM stores;
