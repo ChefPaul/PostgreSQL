@@ -1,0 +1,6 @@
+--What whiskies have a bottle price over $100
+SELECT * FROM products WHERE CAST(proof AS integer) > 100 AND category_name ILIKE '%WHISK%';
+SELECT category_name, MAX(CAST(proof AS integer)) FROM products GROUP BY category_name;
+
+--How many items does each vendor sell with bottle prices over $100?
+SELECT vendor_name, COUNT(*) FROM products WHERE CAST(bottle_price AS numeric) > 100 GROUP BY vendor_name ORDER BY COUNT(*) DESC;
